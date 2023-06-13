@@ -1,7 +1,9 @@
 import React from "react";
 import 'App.css'
+import User from "components/User";
+import Button from "components/Button";
+
 import { useState } from "react";
-import matchers from "@testing-library/jest-dom/matchers";
 
 const App = () => {
 
@@ -56,7 +58,7 @@ const App = () => {
           onChange={ageChangeHandler}
         />
         <br />
-        <button onClick={clickButtonHandler}>추가</button>
+        <Button addButton={clickButtonHandler} />
       </div>
 
       <div className="app-style">
@@ -76,14 +78,7 @@ const App = () => {
   );
 };
 
-const User = ({ item, deleteFunction }) => {
 
-  return (
-    <div key={item.id} className="squareStyle">
-      {item.age} - {item.name}
-      <button onClick={() => deleteFunction(item.id)}>삭제</button>
-    </div>
-  )
-}
+
 
 export default App;
