@@ -1,84 +1,48 @@
 import React from "react";
-import 'App.css'
-import User from "components/User";
-import Button from "components/Button";
+import { styled } from "styled-components";
 
-import { useState } from "react";
 
 const App = () => {
 
-  const [users, setUsers] = useState([
-    { id: 1, age: 30, name: "송중기" },
-    { id: 2, age: 24, name: "송강" },
-    { id: 3, age: 25, name: "김유정" },
-    { id: 4, age: 33, name: "구교환" },
-    { id: 5, age: 32, name: "마동석" },
-  ]);
+  // 박스의 색을 배열에 담습니다.
+  const boxList = ["red", "green", "blue", "black"];
 
-  const [name, setName] = useState('');
-  const [age, setAge] = useState('');
-
-  const nameChangeHandler = (e) => {
-    setName(e.target.value);
+  // 색을 넣으면, 이름을 반환해주는 함수를 만듭니다.
+  const getBoxName = (color) => {
+    switch (color) {
+      case "red":
+        return "빨간 박스";
+      case "green":
+        return "초록 박스";
+      case "blue":
+        return "파란 박스";
+      default:
+        return "검정 박스";
+    }
   }
-
-  const ageChangeHandler = (e) => {
-    setAge(e.target.value);
-  }
-
-  // 추가 버튼
-  const clickButtonHandler = () => {
-    const newUser = {
-      id: users.length + 1,
-      age: age,
-      name: name,
-    };
-
-    setUsers([...users, newUser]);
-  }
-
-  // 삭제 버튼
-  const clickDeleteHandler = (id) => {
-    const newUsers = users.filter(user => user.id !== id);
-    setUsers(newUsers);
-  };
 
   return (
     <>
-      <div>
-        이름:&nbsp;
-        <input
-          value={name}
-          onChange={nameChangeHandler}
-        />
-        <br />
-        나이:&nbsp;
-        <input
-          value={age}
-          onChange={ageChangeHandler}
-        />
-        <br />
-        <Button addButton={clickButtonHandler} />
-      </div>
+      {/* <StBox borderColor="red" >빨간 박스</StBox> */}
+      {
+        boxList.map((box) => {
+          return <StBox borderColor={box} >{getBoxName(box)}</StBox>
+        })
+      }
 
-      <div className="app-style">
-        {
-          users.map((item) => {
-            return (
-              <User
-                key={item.id}
-                item={item}
-                deleteFunction={clickDeleteHandler} />
-            );
-          })
-        }
-      </div>
     </>
-
-  );
+  )
 };
 
-
-
-
 export default App;
+
+const StContainer = styled.div`
+  display: flex;
+`;
+
+const StBox = styled.div`
+width: 100px;
+height: 100px;
+border: 1px solid ${(props) => props.borderColor};
+margin: 20px;
+`
