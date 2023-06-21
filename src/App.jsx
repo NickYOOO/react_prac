@@ -1,5 +1,6 @@
 // src/App.js
 
+import Test from "components/useEffectTest";
 import React, { useEffect } from "react";
 
 const App = () => {
@@ -12,7 +13,7 @@ const App = () => {
     }
   }, [])
 
-  return <div>hello react!</div>
+  return <Test />
 };
 
 export default App;
