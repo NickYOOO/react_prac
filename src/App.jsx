@@ -1,19 +1,24 @@
-// src/App.js
+import { useEffect, useRef } from "react";
+import "./App.css";
 
-import Test from "components/useEffectTest";
-import React, { useEffect } from "react";
+function App() {
+  const idRef = useRef("");
 
-const App = () => {
-
+  // 렌더링이 될 때
   useEffect(() => {
-    // 화면에 컴포넌트가 나타났을(mount) 때 실행하고자 하는 함수를 넣어주세요.
+    idRef.current.focus();
+  }, []);
 
-    return () => {
-      // 화면에서 컴포넌트가 사라졌을(unmount) 때 실행하고자 하는 함수를 넣어주세요.
-    }
-  }, [])
-
-  return <Test />
-};
+  return (
+    <>
+      <div>
+        아이디 : <input type="text" ref={idRef} />
+      </div>
+      <div>
+        비밀번호 : <input type="password" />
+      </div>
+    </>
+  );
+}
 
 export default App;
